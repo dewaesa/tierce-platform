@@ -8,7 +8,7 @@ MAINTAINER Samuel Dewaele <samuel.dewaele@iteolia.com>
 
 # TODO: check root password and add a user
 
-RUN yum update -y -t
+#RUN yum update -y -t
 
 # install basic tools
 RUN yum install -y wget unzip expect pwgen
