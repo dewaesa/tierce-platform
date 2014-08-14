@@ -37,11 +37,26 @@ ENV GLASSFISH_HOME /opt/oracle/glassfish
 
 ENV PATH $GLASSFISH_HOME/bin:$PATH
 
-ADD run.sh /run.sh
-RUN chmod +x run.sh
+#ADD run.sh /run.sh
+#RUN chmod +x run.sh
 
 # 4848 (administration), 8080 (HTTP listener), 8181 (HTTPS listener)
 EXPOSE 4848 8080 8181
 
 # MongoDB following the instructions from:
 # http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
+
+RUN \
+  echo -e '[mongodb]\nname=MongoDB Repository\nbaseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/\ngpgcheck=0\nenabled=1'|tee /etc/yum.repos.d/mongodb.repo && \
+  yum update -y && \
+  yum install -y mongodb-org && \
+  mkdir -p /data/db
+
+# Define mountable directories.
+VOLUME ["/data"]
+
+# Define working directory.
+WORKDIR /data
+
+# Define default command.
+CMD ["mongod"]
