@@ -46,10 +46,10 @@ EXPOSE 4848 8080 8181
 # MongoDB following the instructions from:
 # http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
 
-RUN echo -e '[mongodb]\nname=MongoDB Repository\nbaseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/\ngpgcheck=0\nenabled=1'|tee /etc/yum.repos.d/mongodb.repo 
-RUN yum update -y 
+RUN echo -e '[mongodb]\nname=MongoDB Repository\nbaseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/\ngpgcheck=0\nenabled=1'|tee /etc/yum.repos.d/mongodb.repo  
 RUN yum install -y mongodb-org
 RUN  mkdir -p /data/db
+RUN service mongod start
 
 # Define mountable directories.
 #VOLUME ["/data"]
