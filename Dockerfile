@@ -53,10 +53,10 @@ RUN \
   mkdir -p /data/db
 
 # Define mountable directories.
-VOLUME ["/data"]
+#VOLUME ["/data"]
 
 # Define working directory.
-WORKDIR /data
+#WORKDIR /data
 
 # Define default command.
-CMD ["mongod"]
+#CMD ["mongod"]
