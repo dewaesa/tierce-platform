@@ -60,7 +60,13 @@ WORKDIR /data
 CMD ["mongod"]
 
 # Expose port 27017 from the container to the host
+# Expose ports.
+#   - 27017: process
+#   - 28017: http
 EXPOSE 27017
+EXPOSE 28017
 
 # Set usr/bin/mongod as the dockerized entry-point application
-ENTRYPOINT usr/bin/mongod
+#ENTRYPOINT usr/bin/mongod
+
+RUN service mongod start
