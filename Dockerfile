@@ -32,13 +32,12 @@ RUN mv -v glassfish-4.0.zip /opt/oracle/
 RUN cd /opt/oracle && unzip -q glassfish-4.0.zip
 RUN ln -svn /opt/oracle/glassfish4 /opt/oracle/glassfish
 
-RUN echo "GLASSFISH_HOME=/opt/oracle/glassfish"
-ENV GLASSFISH_HOME /opt/oracle/glassfish
+RUN echo "GLASSFISH_HOME=/opt/oracle/glassfish4/glassfish"
+ENV GLASSFISH_HOME /opt/oracle/glassfish4/glassfish
 
 ENV PATH $GLASSFISH_HOME/bin:$PATH
 
-#ADD run.sh /run.sh
-#RUN chmod +x run.sh
+RUN $GLASSFISH_HOME/bin/startserv &
 
 # 4848 (administration), 8080 (HTTP listener), 8181 (HTTPS listener)
 EXPOSE 4848 8080 8181
