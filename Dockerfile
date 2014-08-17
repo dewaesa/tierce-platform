@@ -52,10 +52,16 @@ RUN  mkdir -p /data/db
 RUN service mongod start
 
 # Define mountable directories.
-#VOLUME ["/data"]
+VOLUME ["/data"]
 
 # Define working directory.
-#WORKDIR /data
+WORKDIR /data
 
 # Define default command.
-#CMD ["mongod"]
+CMD ["mongod"]
+
+# Expose port 27017 from the container to the host
+EXPOSE 27017
+
+# Set usr/bin/mongod as the dockerized entry-point application
+ENTRYPOINT usr/bin/mongod
